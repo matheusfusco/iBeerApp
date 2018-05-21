@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activity.DetalheBarActivity"
+    tools:showIn="@layout/activity_detalhe_bar">
+
+    <!--val nome: String,-->
+    <!--val notaAmbiente: Double,-->
+    <!--val notaAtendimento: Double,-->
+    <!--val temCervejaArtesanal: Boolean,-->
+    <!--val temMusicaAoVivo: Boolean,-->
+    <!--val cep: Int,-->
+    <!--val telefone: Int,-->
+    <!--val comentario: String)-->
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvComentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comentario do bar"
+            />
+
+        <TextView
+            android:id="@+id/tvTituloAmbiente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ambiente"
+            app:layout_constraintTop_toBottomOf="@+id/tvComentario"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tvTituloAtendimento"/>
+
+        <TextView
+            android:id="@+id/tvTituloAtendimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atendimento"
+            app:layout_constraintLeft_toRightOf="@+id/tvTituloAmbiente"
+            app:layout_constraintTop_toBottomOf="@+id/tvComentario" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

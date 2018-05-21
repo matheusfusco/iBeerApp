@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.fiap.matheusfusco.matheusfusco.Adapter.BarListAdapter
+import com.fiap.matheusfusco.matheusfusco.Adapter.ListaBarAdapter
 import com.fiap.matheusfusco.matheusfusco.R
 import model.Bar
 
 
-class BarListFragment : Fragment() {
+class ListaBarFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +21,22 @@ class BarListFragment : Fragment() {
     }
 
     private fun bares(): List<Bar> {
-        return listOf(Bar("teste", 10.0, 10.0, true, true, 100, 12345678, "muito bom"),
-                Bar("bar 2", 8.0, 9.0, true, false, 1001, 12345678, "muito mais ou menos"))
+        return listOf(Bar("teste",
+                10.0,
+                10.0,
+                true,
+                true,
+                100,
+                12345678,
+                "muito bom"),
+                Bar("bar 2",
+                        8.0,
+                        9.0,
+                        true,
+                        false,
+                        1001,
+                        12345678,
+                        "muito mais ou menos"))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +46,14 @@ class BarListFragment : Fragment() {
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.rvBares)
 
-        recyclerView.adapter = BarListAdapter(
+        recyclerView.adapter = ListaBarAdapter(
                 this.context!!,
                 bares(),
                 {
-                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT)
+                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
                 },
                 {
-                    Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT)
+                    Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT).show()
                 }
         )
 

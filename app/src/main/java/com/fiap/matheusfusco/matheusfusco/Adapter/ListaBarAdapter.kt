@@ -10,10 +10,10 @@ import com.fiap.matheusfusco.matheusfusco.R
 import kotlinx.android.synthetic.main.bar_item.view.*
 import model.Bar
 
-class BarListAdapter(private val context: Context,
-                     private val bares: List<Bar>,
-                     val shareListener: (Bar) -> Unit,
-                     val callListener: (Bar) -> Unit) : Adapter<BarListAdapter.ViewHolder>() {
+class ListaBarAdapter(private val context: Context,
+                      private val bares: List<Bar>,
+                      val shareListener: (Bar) -> Unit,
+                      val callListener: (Bar) -> Unit) : Adapter<ListaBarAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

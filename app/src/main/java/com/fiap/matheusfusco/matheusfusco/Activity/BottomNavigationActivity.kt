@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
-import com.fiap.matheusfusco.matheusfusco.Fragments.BarListFragment
+import com.fiap.matheusfusco.matheusfusco.Fragments.ListaBarFragment
 import com.fiap.matheusfusco.matheusfusco.Fragments.HomeFragment
 import com.fiap.matheusfusco.matheusfusco.Fragments.SobreFragment
 import com.fiap.matheusfusco.matheusfusco.R
@@ -23,7 +23,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_bares -> {
-                fragmento = BarListFragment()
+                fragmento = ListaBarFragment()
                 trocaFragmento(fragmento)
                 return@OnNavigationItemSelectedListener true
             }
