@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btCadastrar.setOnClickListener {
+        btRegister.setOnClickListener {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
