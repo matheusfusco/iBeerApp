@@ -1,11 +1,17 @@
-package model
+package com.fiap.matheusfusco.matheusfusco.model
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Bar(val nome: String,
+@Entity
+data class Bar(@PrimaryKey(autoGenerate = true)
+               val id: Long = 0,
+               val nome: String,
                val notaAmbiente: Double,
                val notaAtendimento: Double,
+               val notaRecomendacao: Double,
                val temCervejaArtesanal: Boolean,
                val temMusicaAoVivo: Boolean,
                val cep: Int,
@@ -14,6 +20,7 @@ data class Bar(val nome: String,
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
+            parcel.readDouble(),
             parcel.readDouble(),
             parcel.readDouble(),
             parcel.readByte() != 0.toByte(),
@@ -27,6 +34,7 @@ data class Bar(val nome: String,
         parcel.writeString(nome)
         parcel.writeDouble(notaAmbiente)
         parcel.writeDouble(notaAtendimento)
+        parcel.writeDouble(notaRecomendacao)
         parcel.writeByte(if (temCervejaArtesanal) 1 else 0)
         parcel.writeByte(if (temMusicaAoVivo) 1 else 0)
         parcel.writeInt(cep)
@@ -47,5 +55,6 @@ data class Bar(val nome: String,
             return arrayOfNulls(size)
         }
     }
+
 
 }

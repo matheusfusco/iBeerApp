@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.Adapter
+package com.fiap.matheusfusco.matheusfusco.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fiap.matheusfusco.matheusfusco.R
+import com.fiap.matheusfusco.matheusfusco.model.Bar
 import kotlinx.android.synthetic.main.bar_item.view.*
-import model.Bar
 
 class ListaBarAdapter(private val context: Context,
                       private val bares: List<Bar>,
+                      val selectBarListener: (Bar) -> Unit,
                       val shareListener: (Bar) -> Unit,
                       val callListener: (Bar) -> Unit) : Adapter<ListaBarAdapter.ViewHolder>() {
 
@@ -30,13 +31,14 @@ class ListaBarAdapter(private val context: Context,
         val bar = bares[position]
 
         holder.let {
-            it.bindView(bar, shareListener, callListener)
+            it.bindView(bar, selectBarListener, shareListener, callListener)
         }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bindView(bar: Bar,
+                     selectBarListener: (Bar) -> Unit,
                      shareListener: (Bar) -> Unit,
                      callListener: (Bar) -> Unit) {
             val title = itemView.tvBarName
@@ -47,7 +49,7 @@ class ListaBarAdapter(private val context: Context,
             title.text = bar.nome
             descr.text = bar.comentario
 
-
+            itemView.setOnClickListener { selectBarListener(bar) }
             btShare.setOnClickListener { shareListener(bar) }
             btCall.setOnClickListener { callListener(bar) }
         }

@@ -1,5 +1,6 @@
-package com.fiap.matheusfusco.matheusfusco.Fragments
+package com.fiap.matheusfusco.matheusfusco.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,9 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.fiap.matheusfusco.matheusfusco.Adapter.ListaBarAdapter
+import com.fiap.matheusfusco.matheusfusco.adapter.ListaBarAdapter
 import com.fiap.matheusfusco.matheusfusco.R
-import model.Bar
+import com.fiap.matheusfusco.matheusfusco.activity.DetalheBarActivity
+import com.fiap.matheusfusco.matheusfusco.model.Bar
+import kotlinx.android.synthetic.main.fragment_bar_list.*
 
 
 class ListaBarFragment : Fragment() {
@@ -18,25 +21,6 @@ class ListaBarFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
-
-    private fun bares(): List<Bar> {
-        return listOf(Bar("teste",
-                10.0,
-                10.0,
-                true,
-                true,
-                100,
-                12345678,
-                "muito bom"),
-                Bar("bar 2",
-                        8.0,
-                        9.0,
-                        true,
-                        false,
-                        1001,
-                        12345678,
-                        "muito mais ou menos"))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +34,9 @@ class ListaBarFragment : Fragment() {
                 this.context!!,
                 bares(),
                 {
+                    Toast.makeText(activity, "Selecionando ${it.nome}", Toast.LENGTH_SHORT).show()
+                },
+                {
                     Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
                 },
                 {
@@ -61,5 +48,29 @@ class ListaBarFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btnAction.setOnClickListener{
+            startActivity(Intent(activity, DetalheBarActivity::class.java))
+        }
+    }
+
+
+//    val nome: String,
+//    val notaAmbiente: Double,
+//    val notaAtendimento: Double,
+//    val notaRecomendacao: Double,
+//    val temCervejaArtesanal: Boolean,
+//    val temMusicaAoVivo: Boolean,
+//    val cep: Int,
+//    val telefone: Int,
+//    val comentario: String
+
+    private fun bares(): List<Bar> {
+        return listOf(Bar("bar 1", 10.0, 9.0, 9.0, true, false, 0, 12345678, "muito bom"),
+                Bar("bar 2", 8.0, 7.0, 8.0, true, false, 0, 87654321, "mais ou menos"))
     }
 }

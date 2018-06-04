@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.Activity
+package com.fiap.matheusfusco.matheusfusco.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity

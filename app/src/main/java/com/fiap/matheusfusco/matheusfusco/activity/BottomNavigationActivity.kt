@@ -1,21 +1,21 @@
-package com.fiap.matheusfusco.matheusfusco.Activity
+package com.fiap.matheusfusco.matheusfusco.activity
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
-import com.fiap.matheusfusco.matheusfusco.Fragments.ListaBarFragment
-import com.fiap.matheusfusco.matheusfusco.Fragments.HomeFragment
-import com.fiap.matheusfusco.matheusfusco.Fragments.MapFragment
-import com.fiap.matheusfusco.matheusfusco.Fragments.SobreFragment
+import com.fiap.matheusfusco.matheusfusco.fragments.ListaBarFragment
+import com.fiap.matheusfusco.matheusfusco.fragments.HomeFragment
+import com.fiap.matheusfusco.matheusfusco.fragments.MapFragment
+import com.fiap.matheusfusco.matheusfusco.fragments.SobreFragment
 import com.fiap.matheusfusco.matheusfusco.R
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
 
 class BottomNavigationActivity : AppCompatActivity() {
 
-    private val mOnNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
+    lateinit var fragmento: Fragment
 
-        val fragmento: Fragment
+    private val mOnNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
 
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -47,6 +47,9 @@ class BottomNavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bottom_navigation)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        fragmento = HomeFragment()
+        trocaFragmento(fragmento)
     }
     private fun trocaFragmento(fragmento: Fragment) {
         supportFragmentManager
