@@ -1,9 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.DetalheBarActivity">
 
-</android.support.constraint.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activity.DetalheBarActivity"
+    android:orientation="vertical">
+
+    <!--val id: Long = 0,-->
+    <!--val nome: String,-->
+    <!--val notaAmbiente: Double,-->
+    <!--val notaAtendimento: Double,-->
+    <!--val notaRecomendacao: Double,-->
+    <!--val temCervejaArtesanal: Boolean,-->
+    <!--val temMusicaAoVivo: Boolean,-->
+    <!--val cep: Int,-->
+    <!--val telefone: Int,-->
+    <!--val comentario-->
+    <EditText
+        android:id="@+id/et_bar_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Nome"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="De 0 a 10, qual a sua nota para o ambiente do local?"/>
+
+    <SeekBar
+        android:id="@+id/sb_bar_ambient_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="De 0 a 10, qual a sua nota para o atendimento dos garçons?"/>
+
+    <SeekBar
+        android:id="@+id/sb_bar_attendance_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="De 0 a 10, qual seria a chance de você recomendar este local para um amigo?"/>
+
+    <SeekBar
+        android:id="@+id/sb_bar_recommendation_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        />
+
+    <CheckBox
+        android:id="@+id/cb_bar_has_artesanal_beer"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Cerveja artesanal"/>
+
+    <CheckBox
+        android:id="@+id/cb_bar_has_live_band"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Música ao vivo" />
+
+    <EditText
+        android:id="@+id/et_bar_cep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CEP"/>
+
+    <EditText
+        android:id="@+id/et_bar_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"/>
+
+    <EditText
+        android:id="@+id/et_bar_general_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(Opcional) Deixe seu comentário sobre o bar..."/>
+
+    <Button
+    android:id="@+id/bt_save_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="Salvar"/>
+
+</LinearLayout>

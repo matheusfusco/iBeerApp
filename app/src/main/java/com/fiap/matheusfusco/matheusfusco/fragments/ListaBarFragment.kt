@@ -1,5 +1,7 @@
 package com.fiap.matheusfusco.matheusfusco.fragments
 
+import android.app.AlertDialog
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,15 +14,27 @@ import android.widget.Toast
 import com.fiap.matheusfusco.matheusfusco.adapter.ListaBarAdapter
 import com.fiap.matheusfusco.matheusfusco.R
 import com.fiap.matheusfusco.matheusfusco.activity.DetalheBarActivity
+import com.fiap.matheusfusco.matheusfusco.dao.BarDao
+import com.fiap.matheusfusco.matheusfusco.database.AppDatabase
 import com.fiap.matheusfusco.matheusfusco.model.Bar
 import kotlinx.android.synthetic.main.fragment_bar_list.*
 
 
 class ListaBarFragment : Fragment() {
 
+    private lateinit var barDao: BarDao
+    private lateinit var adapter: ListaBarAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val database = Room.databaseBuilder(
+                this.context!!,
+                AppDatabase::class.java,
+                "techstore-database")
+                .allowMainThreadQueries()
+                .build()
+        barDao = database.barDao()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +55,11 @@ class ListaBarFragment : Fragment() {
                 },
                 {
                     Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT).show()
+                },
+                {
+                    AlertDialog.Builder(this.context!!).setMessage("Deseja excluir?").setPositiveButton("Sim") { _,_ ->
+                        barDao.delete(it)
+                    }.setNegativeButton("Não", null).show()
                 }
         )
 
@@ -58,19 +77,9 @@ class ListaBarFragment : Fragment() {
         }
     }
 
-
-//    val nome: String,
-//    val notaAmbiente: Double,
-//    val notaAtendimento: Double,
-//    val notaRecomendacao: Double,
-//    val temCervejaArtesanal: Boolean,
-//    val temMusicaAoVivo: Boolean,
-//    val cep: Int,
-//    val telefone: Int,
-//    val comentario: String
-
     private fun bares(): List<Bar> {
-        return listOf(Bar("bar 1", 10.0, 9.0, 9.0, true, false, 0, 12345678, "muito bom"),
-                Bar("bar 2", 8.0, 7.0, 8.0, true, false, 0, 87654321, "mais ou menos"))
+    return barDao.all()
+//        return mutableListOf(Bar(null,"bar 1", 10.0, 9.0, 9.0, true, false, "0", "12345678", "muito bom"),
+//                Bar(null, "bar 2", 8.0, 7.0, 8.0, true, false, "0", "87654321", "mais ou menos"))
     }
 }

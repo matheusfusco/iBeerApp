@@ -13,6 +13,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
+
+
         btLogin.setOnClickListener {
             val intent = Intent(this, BottomNavigationActivity::class.java)
             startActivity(intent)

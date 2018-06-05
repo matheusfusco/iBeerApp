@@ -11,10 +11,11 @@ import com.fiap.matheusfusco.matheusfusco.model.Bar
 import kotlinx.android.synthetic.main.bar_item.view.*
 
 class ListaBarAdapter(private val context: Context,
-                      private val bares: List<Bar>,
+                      private var bares: List<Bar> = listOf(),
                       val selectBarListener: (Bar) -> Unit,
                       val shareListener: (Bar) -> Unit,
-                      val callListener: (Bar) -> Unit) : Adapter<ListaBarAdapter.ViewHolder>() {
+                      val callListener: (Bar) -> Unit,
+                      val longpressListener: (Bar) -> Unit) : Adapter<ListaBarAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +32,7 @@ class ListaBarAdapter(private val context: Context,
         val bar = bares[position]
 
         holder.let {
-            it.bindView(bar, selectBarListener, shareListener, callListener)
+            it.bindView(bar, selectBarListener, shareListener, callListener, longpressListener)
         }
     }
 
@@ -40,7 +41,8 @@ class ListaBarAdapter(private val context: Context,
         fun bindView(bar: Bar,
                      selectBarListener: (Bar) -> Unit,
                      shareListener: (Bar) -> Unit,
-                     callListener: (Bar) -> Unit) {
+                     callListener: (Bar) -> Unit,
+                     longpressListener: (Bar) -> Unit) {
             val title = itemView.tvBarName
             val descr = itemView.tvBarDescription
             val btShare = itemView.btCompartilhar
@@ -49,6 +51,10 @@ class ListaBarAdapter(private val context: Context,
             title.text = bar.nome
             descr.text = bar.comentario
 
+            itemView.setOnLongClickListener {
+                longpressListener(bar)
+             true
+            }
             itemView.setOnClickListener { selectBarListener(bar) }
             btShare.setOnClickListener { shareListener(bar) }
             btCall.setOnClickListener { callListener(bar) }
