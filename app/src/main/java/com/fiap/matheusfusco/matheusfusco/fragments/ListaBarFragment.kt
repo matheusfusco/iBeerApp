@@ -3,6 +3,7 @@ package com.fiap.matheusfusco.matheusfusco.fragments
 import android.app.AlertDialog
 import android.arch.persistence.room.Room
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -23,7 +24,8 @@ import kotlinx.android.synthetic.main.fragment_bar_list.*
 class ListaBarFragment : Fragment() {
 
     private lateinit var barDao: BarDao
-    private lateinit var adapter: ListaBarAdapter
+    var adapter: ListaBarAdapter? = null
+    var listaBares = mutableListOf<Bar>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,17 +46,24 @@ class ListaBarFragment : Fragment() {
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.rvBares)
 
-        recyclerView.adapter = ListaBarAdapter(
+        listaBares = bares()
+
+        adapter = ListaBarAdapter(
                 this.context!!,
-                bares(),
+                listaBares,
                 {
-                    Toast.makeText(activity, "Selecionando ${it.nome}", Toast.LENGTH_SHORT).show()
+                    //                    Toast.makeText(activity, "Selecionando ${it.nome}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this.context!!, DetalheBarActivity::class.java)
+                    intent.putExtra("barID", it.id)
+                    startActivity(intent)
                 },
                 {
                     Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
                 },
                 {
-                    Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${it.telefone}"))
+                    startActivity(intent)
+//                    Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT).show()
                 },
                 {
                     AlertDialog.Builder(this.context!!).setMessage("Deseja excluir?").setPositiveButton("Sim") { _,_ ->
@@ -62,6 +71,9 @@ class ListaBarFragment : Fragment() {
                     }.setNegativeButton("Não", null).show()
                 }
         )
+
+        recyclerView.adapter = adapter
+
 
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
@@ -77,9 +89,12 @@ class ListaBarFragment : Fragment() {
         }
     }
 
-    private fun bares(): List<Bar> {
-    return barDao.all()
-//        return mutableListOf(Bar(null,"bar 1", 10.0, 9.0, 9.0, true, false, "0", "12345678", "muito bom"),
-//                Bar(null, "bar 2", 8.0, 7.0, 8.0, true, false, "0", "87654321", "mais ou menos"))
+    override fun onResume() {
+        super.onResume()
+        adapter?.updateList(bares())
+    }
+
+    private fun bares(): MutableList<Bar> {
+        return barDao.all().toMutableList()
     }
 }

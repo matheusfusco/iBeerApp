@@ -17,7 +17,7 @@
             android:id="@+id/tvBarName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="30sp"
             tools:text="Titulo"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/btCompartilhar"/>
@@ -49,6 +49,23 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/btLigar"
             app:srcCompat="@drawable/ic_share_black_24dp"
+            android:background="@android:color/transparent" />
+
+        <ImageView
+            android:id="@+id/imgCerveja"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvBarDescription"
+            android:src="@drawable/ic_beer_black_white"
+            android:background="@android:color/transparent" />
+
+        <ImageView
+            android:id="@+id/imgMusica"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/imgCerveja"
+            android:layout_below="@id/tvBarDescription"
+            app:srcCompat="@drawable/ic_band_black_white"
             android:background="@android:color/transparent" />
 
     </RelativeLayout>

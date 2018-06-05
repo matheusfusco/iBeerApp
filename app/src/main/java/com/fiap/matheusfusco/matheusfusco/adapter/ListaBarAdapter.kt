@@ -11,7 +11,7 @@ import com.fiap.matheusfusco.matheusfusco.model.Bar
 import kotlinx.android.synthetic.main.bar_item.view.*
 
 class ListaBarAdapter(private val context: Context,
-                      private var bares: List<Bar> = listOf(),
+                      private var bares: List<Bar> = mutableListOf(),
                       val selectBarListener: (Bar) -> Unit,
                       val shareListener: (Bar) -> Unit,
                       val callListener: (Bar) -> Unit,
@@ -51,6 +51,19 @@ class ListaBarAdapter(private val context: Context,
             title.text = bar.nome
             descr.text = bar.comentario
 
+            if (bar.temMusicaAoVivo) {
+                itemView.imgMusica.setImageResource(R.drawable.ic_band_filled)
+            }
+            else {
+                itemView.imgMusica.setImageResource(R.drawable.ic_band_black_white)
+            }
+
+            if (bar.temCervejaArtesanal) {
+                itemView.imgCerveja.setImageResource(R.drawable.ic_beer_filled)
+            } else {
+                itemView.imgCerveja.setImageResource(R.drawable.ic_beer_black_white)
+            }
+
             itemView.setOnLongClickListener {
                 longpressListener(bar)
              true
@@ -59,5 +72,10 @@ class ListaBarAdapter(private val context: Context,
             btShare.setOnClickListener { shareListener(bar) }
             btCall.setOnClickListener { callListener(bar) }
         }
+    }
+
+    fun updateList(bares: List<Bar>) {
+        this.bares = bares
+        notifyDataSetChanged()
     }
 }

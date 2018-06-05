@@ -1,9 +1,6 @@
 package com.fiap.matheusfusco.matheusfusco.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.fiap.matheusfusco.matheusfusco.model.Bar
 
 @Dao
@@ -11,6 +8,12 @@ interface BarDao {
 
     @Query("SELECT * FROM bar")
     fun all(): List<Bar>
+
+    @Query("SELECT * FROM bar WHERE id = :barID")
+    fun findById(barID: Long): Bar
+
+    @Update
+    fun update(bar: Bar)
 
     @Insert
     fun add(vararg bar: Bar)
