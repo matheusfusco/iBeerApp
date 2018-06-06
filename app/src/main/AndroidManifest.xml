@@ -25,11 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name="com.fiap.matheusfusco.matheusfusco.auth.login.LoginActivity" />
         <activity
             android:name=".base.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation" />
-        <activity android:name=".cadastro.CadastroActivity" />
+        <activity android:name="com.fiap.matheusfusco.matheusfusco.auth.cadastro.CadastroActivity" />
         <activity android:name=".bar.detalhe.DetalheBarActivity" />
 
         <!--

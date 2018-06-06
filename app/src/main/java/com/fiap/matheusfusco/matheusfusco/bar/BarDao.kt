@@ -18,7 +18,6 @@ interface BarDao {
     @Insert
     fun add(vararg bar: Bar)
 
-
     @Delete
     fun delete(vararg bar: Bar): Int
 }

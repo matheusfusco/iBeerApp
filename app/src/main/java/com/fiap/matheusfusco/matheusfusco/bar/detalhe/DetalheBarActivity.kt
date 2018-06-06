@@ -36,6 +36,14 @@ class DetalheBarActivity : AppCompatActivity() {
         barSelecionado = barDao.findById(idBarSelecionado)
         barSelecionado?.let {
             et_bar_name.setText(it.nome)
+            et_bar_cep.setText(it.cep)
+            et_bar_general_comments.setText(it.comentario)
+            et_bar_phone.setText(it.telefone)
+            cb_bar_has_artesanal_beer.isChecked = it.temCervejaArtesanal
+            cb_bar_has_live_band.isChecked = it.temMusicaAoVivo
+            sb_bar_recommendation_grade.progress = it.notaRecomendacao.toInt()
+            sb_bar_attendance_grade.progress = it.notaAtendimento.toInt()
+            sb_bar_ambient_grade.progress = it.notaAmbiente.toInt()
         }
 
 

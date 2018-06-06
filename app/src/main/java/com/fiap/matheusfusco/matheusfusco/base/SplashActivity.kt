@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.fiap.matheusfusco.matheusfusco.R
-import com.fiap.matheusfusco.matheusfusco.login.LoginActivity
+import com.fiap.matheusfusco.matheusfusco.auth.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
