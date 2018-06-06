@@ -1,15 +1,14 @@
-package com.fiap.matheusfusco.matheusfusco.activity
+package com.fiap.matheusfusco.matheusfusco.bar.detalhe
 
 import android.arch.persistence.room.Room
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import com.fiap.matheusfusco.matheusfusco.R
-import com.fiap.matheusfusco.matheusfusco.dao.BarDao
-import com.fiap.matheusfusco.matheusfusco.database.AppDatabase
-import com.fiap.matheusfusco.matheusfusco.model.Bar
+import com.fiap.matheusfusco.matheusfusco.bar.BarDao
+import com.fiap.matheusfusco.matheusfusco.bar.BarDatabase
+import com.fiap.matheusfusco.matheusfusco.bar.Bar
 import kotlinx.android.synthetic.main.activity_detalhe_bar.*
-import kotlinx.android.synthetic.main.bar_item.*
 
 class DetalheBarActivity : AppCompatActivity() {
     private val idBarSelecionado: Long by lazy {
@@ -27,7 +26,7 @@ class DetalheBarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detalhe_bar)
         val database = Room.databaseBuilder(
                 this,
-                AppDatabase::class.java,
+                BarDatabase::class.java,
                 "techstore-database")
                 .allowMainThreadQueries()
                 .build()

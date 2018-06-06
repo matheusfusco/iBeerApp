@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.adapter
+package com.fiap.matheusfusco.matheusfusco.bar
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fiap.matheusfusco.matheusfusco.R
-import com.fiap.matheusfusco.matheusfusco.model.Bar
 import kotlinx.android.synthetic.main.bar_item.view.*
 
 class ListaBarAdapter(private val context: Context,

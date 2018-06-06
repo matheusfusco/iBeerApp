@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.model
+package com.fiap.matheusfusco.matheusfusco.bar
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -28,8 +28,7 @@ data class Bar(@PrimaryKey(autoGenerate = true)
             parcel.readByte() != 0.toByte(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString()) {
-    }
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         id?.let { parcel.writeLong(it) }

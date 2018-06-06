@@ -1,10 +1,11 @@
-package com.fiap.matheusfusco.matheusfusco.activity
+package com.fiap.matheusfusco.matheusfusco.base
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.fiap.matheusfusco.matheusfusco.R
+import com.fiap.matheusfusco.matheusfusco.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 

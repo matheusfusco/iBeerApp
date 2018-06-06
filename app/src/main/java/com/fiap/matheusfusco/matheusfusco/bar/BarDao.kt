@@ -1,7 +1,7 @@
-package com.fiap.matheusfusco.matheusfusco.dao
+package com.fiap.matheusfusco.matheusfusco.bar
 
 import android.arch.persistence.room.*
-import com.fiap.matheusfusco.matheusfusco.model.Bar
+import com.fiap.matheusfusco.matheusfusco.bar.Bar
 
 @Dao
 interface BarDao {

@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.fragments
+package com.fiap.matheusfusco.matheusfusco.bar
 
 import android.app.AlertDialog
 import android.arch.persistence.room.Room
@@ -12,12 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.fiap.matheusfusco.matheusfusco.adapter.ListaBarAdapter
 import com.fiap.matheusfusco.matheusfusco.R
-import com.fiap.matheusfusco.matheusfusco.activity.DetalheBarActivity
-import com.fiap.matheusfusco.matheusfusco.dao.BarDao
-import com.fiap.matheusfusco.matheusfusco.database.AppDatabase
-import com.fiap.matheusfusco.matheusfusco.model.Bar
+import com.fiap.matheusfusco.matheusfusco.bar.detalhe.DetalheBarActivity
 import kotlinx.android.synthetic.main.fragment_bar_list.*
 
 
@@ -32,7 +28,7 @@ class ListaBarFragment : Fragment() {
 
         val database = Room.databaseBuilder(
                 this.context!!,
-                AppDatabase::class.java,
+                BarDatabase::class.java,
                 "techstore-database")
                 .allowMainThreadQueries()
                 .build()
@@ -58,15 +54,20 @@ class ListaBarFragment : Fragment() {
                     startActivity(intent)
                 },
                 {
-                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
+                    val shareBody = "Esse bar é o melhor: ${it.nome}"
+                    val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+                    sharingIntent.type = "text/plain"
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Bar show de bola")
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
+                    startActivity(Intent.createChooser(sharingIntent, "Compartilhar com: "))
                 },
                 {
-                    val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${it.telefone}"))
+                    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",it.telefone, null))
                     startActivity(intent)
-//                    Toast.makeText(activity, "Ligando para ${it.telefone}", Toast.LENGTH_SHORT).show()
                 },
                 {
-                    AlertDialog.Builder(this.context!!).setMessage("Deseja excluir?").setPositiveButton("Sim") { _,_ ->
+                    AlertDialog.Builder(this.context!!).setMessage("Deseja excluir?").setPositiveButton("Sim") { _, _ ->
                         barDao.delete(it)
                     }.setNegativeButton("Não", null).show()
                 }

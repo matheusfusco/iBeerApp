@@ -1,12 +1,12 @@
-package com.fiap.matheusfusco.matheusfusco.database
+package com.fiap.matheusfusco.matheusfusco.bar
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.fiap.matheusfusco.matheusfusco.model.Bar
-import com.fiap.matheusfusco.matheusfusco.dao.BarDao
+import com.fiap.matheusfusco.matheusfusco.bar.Bar
+import com.fiap.matheusfusco.matheusfusco.bar.BarDao
 
 
 @Database(entities = [Bar::class], version = 1, exportSchema = false)
-abstract class AppDatabase : RoomDatabase() {
+abstract class BarDatabase : RoomDatabase() {
     abstract fun barDao(): BarDao
 }

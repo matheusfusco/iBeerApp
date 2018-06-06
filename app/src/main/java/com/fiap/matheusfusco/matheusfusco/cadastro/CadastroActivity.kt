@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.activity
+package com.fiap.matheusfusco.matheusfusco.cadastro
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

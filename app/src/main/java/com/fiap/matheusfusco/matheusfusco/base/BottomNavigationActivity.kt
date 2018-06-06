@@ -1,13 +1,13 @@
-package com.fiap.matheusfusco.matheusfusco.activity
+package com.fiap.matheusfusco.matheusfusco.base
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
-import com.fiap.matheusfusco.matheusfusco.fragments.ListaBarFragment
-import com.fiap.matheusfusco.matheusfusco.fragments.HomeFragment
-import com.fiap.matheusfusco.matheusfusco.fragments.MapFragment
-import com.fiap.matheusfusco.matheusfusco.fragments.SobreFragment
+import com.fiap.matheusfusco.matheusfusco.bar.ListaBarFragment
+import com.fiap.matheusfusco.matheusfusco.home.HomeFragment
+import com.fiap.matheusfusco.matheusfusco.map.MapFragment
+import com.fiap.matheusfusco.matheusfusco.sobre.SobreFragment
 import com.fiap.matheusfusco.matheusfusco.R
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
 

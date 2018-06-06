@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.fragments
+package com.fiap.matheusfusco.matheusfusco.map
 
 
 import android.Manifest
@@ -55,27 +55,21 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCa
     }
 
     override fun onConnectionSuspended(p0: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onLocationChanged(location: Location?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onProviderEnabled(provider: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onProviderDisabled(provider: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -100,7 +94,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCa
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         callConnection()
     }
 
@@ -141,8 +134,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCa
             }
         }
     }
-
-
 
     fun requestPermission() {
         ActivityCompat.requestPermissions(requireActivity(),

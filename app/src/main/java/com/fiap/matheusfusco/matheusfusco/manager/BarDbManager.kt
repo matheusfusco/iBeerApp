@@ -15,7 +15,7 @@ class BarDbManager {
     private val colContent = "Content"
     private val dbVersion = 1
 
-    private val CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + dbTable + " (" + colId + " INTEGER PRIMARY KEY," + colTitle + " TEXT, " + colContent + " TEXT);"
+    private val CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS $dbTable ($colId INTEGER PRIMARY KEY,$colTitle TEXT, $colContent TEXT);"
     private var db: SQLiteDatabase? = null
 
     constructor(context: Context) {
@@ -31,7 +31,7 @@ class BarDbManager {
 
     fun queryAll(): Cursor {
 
-        return db!!.rawQuery("select * from " + dbTable, null)
+        return db!!.rawQuery("select * from $dbTable", null)
     }
 
     fun delete(selection: String, selectionArgs: Array<String>): Int {
@@ -60,7 +60,7 @@ class BarDbManager {
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-            db!!.execSQL("Drop table IF EXISTS " + dbTable)
+            db!!.execSQL("Drop table IF EXISTS $dbTable")
         }
     }
 }

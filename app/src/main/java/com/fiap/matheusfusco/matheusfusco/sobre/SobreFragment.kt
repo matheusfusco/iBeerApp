@@ -1,4 +1,4 @@
-package com.fiap.matheusfusco.matheusfusco.fragments
+package com.fiap.matheusfusco.matheusfusco.sobre
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

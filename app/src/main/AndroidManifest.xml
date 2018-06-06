@@ -18,19 +18,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".base.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity
-            android:name=".activity.BottomNavigationActivity"
+            android:name=".base.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation" />
-        <activity android:name=".activity.CadastroActivity" />
-        <activity android:name=".activity.DetalheBarActivity" />
+        <activity android:name=".cadastro.CadastroActivity" />
+        <activity android:name=".bar.detalhe.DetalheBarActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

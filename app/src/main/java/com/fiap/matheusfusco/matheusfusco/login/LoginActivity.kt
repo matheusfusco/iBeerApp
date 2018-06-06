@@ -1,9 +1,11 @@
-package com.fiap.matheusfusco.matheusfusco.activity
+package com.fiap.matheusfusco.matheusfusco.login
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.fiap.matheusfusco.matheusfusco.R
+import com.fiap.matheusfusco.matheusfusco.base.BottomNavigationActivity
+import com.fiap.matheusfusco.matheusfusco.cadastro.CadastroActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -11,9 +13,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
-
 
         btLogin.setOnClickListener {
             val intent = Intent(this, BottomNavigationActivity::class.java)
