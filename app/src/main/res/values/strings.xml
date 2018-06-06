@@ -98,7 +98,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="et_hint_user">User</string>
+    <string name="et_hint_email">E-mail</string>
     <string name="et_hint_password">Password</string>
     <string name="bt_login">Login</string>
     <string name="bt_register">Register</string>

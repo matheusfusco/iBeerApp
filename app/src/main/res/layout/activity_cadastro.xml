@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cadastro.CadastroActivity">
+    tools:context=".cadastro.CadastroActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/ic_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_beer"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WeBeer"
+        android:layout_gravity="center"
+        android:layout_below="@+id/ic_logo"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/small_descr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Para cadastrar no WeBeer é muito simples, digite seu e-mail, e escolha uma senha para criar seu usuário."
+        android:layout_below="@+id/app_name"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:layout_below="@+id/small_descr"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorPrimary"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Senha"
+        android:layout_below="@+id/et_email"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorPrimary"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>
