@@ -8,36 +8,64 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:hint="@string/et_hint_email"
-        android:id="@+id/etEmail"
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="8dp"
-        android:drawableTint="@color/colorPrimary"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etEmailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:hint="@string/et_hint_password"
-        android:id="@+id/etPassword"
-        android:drawableLeft="@drawable/ic_password"
-        android:drawablePadding="8dp"
-        android:drawableTint="@color/colorPrimary"/>
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:text="@string/bt_login"
             android:id="@+id/btLogin"/>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:text="@string/bt_register"
+            android:textAllCaps="false"
             android:id="@+id/btRegister"/>
     </LinearLayout>
 </LinearLayout>

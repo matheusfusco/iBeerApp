@@ -42,7 +42,9 @@ class ListaBarFragment : Fragment() {
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.rvBares)
 
-        listaBares = bares()
+        var bares = bares()
+
+        if (bares != null) listaBares = bares
 
         adapter = ListaBarAdapter(
                 this.context!!,
@@ -54,7 +56,7 @@ class ListaBarFragment : Fragment() {
                     startActivity(intent)
                 },
                 {
-//                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
+                    //                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
                     val shareBody = "Esse bar é o melhor: ${it.nome}"
                     val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
@@ -92,10 +94,11 @@ class ListaBarFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        adapter?.updateList(bares())
+        var bares = bares()
+        if (bares != null) adapter?.updateList(bares)
     }
 
-    private fun bares(): MutableList<Bar> {
-        return barDao.all().toMutableList()
+    private fun bares(): MutableList<Bar>? {
+        return barDao.all()?.toMutableList()
     }
 }

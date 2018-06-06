@@ -35,8 +35,8 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun saveUser() {
         val createdUser = create()
-        createdUser.let {
-            userDao.add(it!!)
+        if (createdUser != null) {
+            userDao.add(createdUser)
         }
 
     }

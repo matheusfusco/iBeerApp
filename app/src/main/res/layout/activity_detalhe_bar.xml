@@ -1,100 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".bar.detalhe.DetalheBarActivity"
-    android:orientation="vertical">
-
-    <!--val id: Long = 0,-->
-    <!--val nome: String,-->
-    <!--val notaAmbiente: Double,-->
-    <!--val notaAtendimento: Double,-->
-    <!--val notaRecomendacao: Double,-->
-    <!--val temCervejaArtesanal: Boolean,-->
-    <!--val temMusicaAoVivo: Boolean,-->
-    <!--val cep: Int,-->
-    <!--val telefone: Int,-->
-    <!--val comentario-->
-    <EditText
-        android:id="@+id/et_bar_name"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Nome"/>
-
-    <TextView
+    android:layout_height="match_parent"
+    tools:context=".bar.detalhe.DetalheBarActivity">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="De 0 a 10, qual a sua nota para o ambiente do local?"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <SeekBar
-        android:id="@+id/sb_bar_ambient_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="10"
-        />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_below="@+id/small_descr">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="De 0 a 10, qual a sua nota para o atendimento dos garçons?"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_bar_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <SeekBar
-        android:id="@+id/sb_bar_attendance_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="10"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="De 0 a 10, qual a sua nota para o ambiente do local?"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="De 0 a 10, qual seria a chance de você recomendar este local para um amigo?"/>
+        <SeekBar
+            android:id="@+id/sb_bar_ambient_grade"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:max="10" />
 
-    <SeekBar
-        android:id="@+id/sb_bar_recommendation_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="10"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="De 0 a 10, qual a sua nota para o atendimento dos garçons?"/>
 
-    <CheckBox
-        android:id="@+id/cb_bar_has_artesanal_beer"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:text="Cerveja artesanal"/>
+        <SeekBar
+            android:id="@+id/sb_bar_attendance_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:max="10"
+            />
 
-    <CheckBox
-        android:id="@+id/cb_bar_has_live_band"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:text="Música ao vivo" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="De 0 a 10, qual seria a chance de você recomendar este local para um amigo?"/>
 
-    <EditText
-        android:id="@+id/et_bar_cep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="CEP"/>
+        <SeekBar
+            android:id="@+id/sb_bar_recommendation_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:max="10"
+            />
 
-    <EditText
-        android:id="@+id/et_bar_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Telefone"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Aqui você encontra:" />
+        <CheckBox
+            android:id="@+id/cb_bar_has_artesanal_beer"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Cerveja artesanal"/>
 
-    <EditText
-        android:id="@+id/et_bar_general_comments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="(Opcional) Deixe seu comentário sobre o bar..."/>
+        <CheckBox
+            android:id="@+id/cb_bar_has_live_band"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Música ao vivo" />
 
-    <Button
-    android:id="@+id/bt_save_button"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:text="Salvar"/>
+        <EditText
+            android:id="@+id/et_bar_cep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="CEP"/>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_bar_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="Telefone"/>
+
+        <EditText
+            android:id="@+id/et_bar_general_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="(Opcional) Deixe seu comentário sobre o bar..."/>
+
+        <Button
+            android:id="@+id/bt_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="16dp"
+            android:text="Salvar"/>
+
+    </LinearLayout>
+
+</ScrollView>

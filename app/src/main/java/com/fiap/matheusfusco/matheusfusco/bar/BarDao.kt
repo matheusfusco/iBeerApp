@@ -7,7 +7,7 @@ import com.fiap.matheusfusco.matheusfusco.bar.Bar
 interface BarDao {
 
     @Query("SELECT * FROM bar")
-    fun all(): List<Bar>
+    fun all(): List<Bar>?
 
     @Query("SELECT * FROM bar WHERE id = :barID")
     fun findById(barID: Long): Bar

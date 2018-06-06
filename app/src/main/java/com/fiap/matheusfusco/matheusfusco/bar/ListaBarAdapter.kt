@@ -73,7 +73,7 @@ class ListaBarAdapter(private val context: Context,
         }
     }
 
-    fun updateList(bares: List<Bar>) {
+    fun updateList(bares: MutableList<Bar>) {
         this.bares = bares
         notifyDataSetChanged()
     }

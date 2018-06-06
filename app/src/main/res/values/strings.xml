@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MatheusFusco</string>
+    <string name="app_name">WeBeer</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="bna_title_home">Home</string>
     <string name="bna_title_bars">Bars</string>
@@ -101,6 +101,6 @@
     <string name="et_hint_email">E-mail</string>
     <string name="et_hint_password">Password</string>
     <string name="bt_login">Login</string>
-    <string name="bt_register">Register</string>
+    <string name="bt_register">You dont\'t have an account yet? <b>Click here</b></string>
     <string name="title_activity_test_maps">Map</string>
 </resources>
