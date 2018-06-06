@@ -6,7 +6,9 @@ import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
+import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -19,58 +21,23 @@ import com.fiap.matheusfusco.matheusfusco.R
 
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
-class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+class MapFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var mMap: GoogleMap
-    private lateinit var mGoogleApiCliente: GoogleApiClient
-    private val REQUEST_GPS: Int = 0
+    private var mLocationRequest: LocationRequest? = null
+    private val UPDATE_INTERVAL = (10 * 1000).toLong()  /* 10 secs */
+    private val FASTEST_INTERVAL: Long = 2000 /* 2 sec */
 
-    override fun onConnected(p0: Bundle?) {
-        checkPermission()
+    private var latitude = 0.0
+    private var longitude = 0.0
 
-        val minhaLocalizacao = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiCliente)
-        if (minhaLocalizacao != null) {
-            adicionarMarcador(minhaLocalizacao.latitude, minhaLocalizacao.longitude, "Não sou Shakira, mas estou aqui")
-
-        }
-    }
-
-    fun adicionarMarcador(latitude: Double, longitude: Double, descrition: String){
-        val sydney = LatLng(latitude, longitude)
-        mMap.clear()
-        mMap.addMarker(MarkerOptions()
-                .position(sydney)
-                .title(descrition)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_beer)))
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15F))
-    }
-
-    override fun onConnectionSuspended(p0: Int) {
-    }
-
-    override fun onConnectionFailed(p0: ConnectionResult) {
-    }
-
-    override fun onLocationChanged(location: Location?) {
-    }
-
-    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-    }
-
-    override fun onProviderEnabled(provider: String?) {
-    }
-
-    override fun onProviderDisabled(provider: String?) {
-    }
+    private lateinit var mGoogleMap: GoogleMap
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -92,52 +59,89 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCa
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        startLocationUpdates()
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        callConnection()
+
+        mGoogleMap = googleMap;
+
+        if (mGoogleMap != null) {
+            mGoogleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).title("Current Location"))
+        }
+
     }
 
+    // 3.
+    protected fun startLocationUpdates() {
+        // initialize location request object
+        mLocationRequest = LocationRequest.create()
+        mLocationRequest!!.run {
+            setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+            setInterval(UPDATE_INTERVAL)
+            setFastestInterval(FASTEST_INTERVAL)
+        }
 
+        // initialize location setting request builder object
+        val builder = LocationSettingsRequest.Builder()
+        builder.addLocationRequest(mLocationRequest!!)
+        val locationSettingsRequest = builder.build()
 
-    @Synchronized fun callConnection (){
-        mGoogleApiCliente = GoogleApiClient.Builder(context!!)
-                .addOnConnectionFailedListener(this)
-                .addConnectionCallbacks(this)
-                .addApi(LocationServices.API).build()
-        mGoogleApiCliente.connect()
+        // initialize location service object
+        val settingsClient = LocationServices.getSettingsClient(this.activity!!)
+        settingsClient!!.checkLocationSettings(locationSettingsRequest)
+
+        // call register location listener
+        registerLocationListner()
     }
 
-
-    private fun checkPermission() {
-        val permission = ContextCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_FINE_LOCATION)
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            Log.i("", "Permissão para gravar negada")
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                val builder = AlertDialog.Builder(context!!)
-
-                builder.setMessage("Necessária a permissao para GPS")
-                        .setTitle("Permissao Requerida")
-
-                builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
-                    requestPermission()
-                })
-
-                val dialog = builder.create()
-                dialog.show()
-
-            } else {
-                requestPermission()
+    private fun registerLocationListner() {
+        // initialize location callback object
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                onLocationChanged(locationResult!!.getLastLocation())
             }
+        }
+        // 4. add permission if android version is greater then 23
+        if(Build.VERSION.SDK_INT >= 23 && checkPermission()) {
+            LocationServices.getFusedLocationProviderClient(this.activity!!).requestLocationUpdates(mLocationRequest, locationCallback, Looper.myLooper())
         }
     }
 
-    fun requestPermission() {
-        ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_GPS)
+    //
+    fun onLocationChanged(location: Location) {
+        // create message for toast with updated latitude and longitudefa
+        var msg = "Updated Location: " + location.latitude  + " , " +location.longitude
+
+        // show toast message with updated location
+        //Toast.makeText(this,msg, Toast.LENGTH_LONG).show()
+        val location = LatLng(location.latitude, location.longitude)
+        mGoogleMap!!.clear()
+        mGoogleMap!!.addMarker(MarkerOptions().position(location).title("Current Location"))
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+    }
+
+    private fun checkPermission() : Boolean {
+        if (ContextCompat.checkSelfPermission(this.context!! , android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            requestPermissions()
+            return false
+        }
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(this.activity!!, arrayOf("Manifest.permission.ACCESS_FINE_LOCATION"),1)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            if (permissions[0] == android.Manifest.permission.ACCESS_FINE_LOCATION) {
+                registerLocationListner()
+            }
+        }
     }
 }
