@@ -18,11 +18,11 @@ class BottomNavigationActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
 
         when (item.itemId) {
-            R.id.navigation_home -> {
-                fragmento = HomeFragment()
-                trocaFragmento(fragmento)
-                return@OnNavigationItemSelectedListener true
-            }
+//            R.id.navigation_home -> {
+//                fragmento = HomeFragment()
+//                trocaFragmento(fragmento)
+//                return@OnNavigationItemSelectedListener true
+//            }
             R.id.navigation_bares -> {
                 fragmento = ListaBarFragment()
                 trocaFragmento(fragmento)
@@ -48,7 +48,8 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        fragmento = HomeFragment()
+//        fragmento = HomeFragment()
+        fragmento = ListaBarFragment()
         trocaFragmento(fragmento)
     }
     private fun trocaFragmento(fragmento: Fragment) {
