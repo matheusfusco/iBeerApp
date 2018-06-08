@@ -10,7 +10,9 @@ import com.fiap.matheusfusco.matheusfusco.R
 import com.fiap.matheusfusco.matheusfusco.auth.cadastro.CadastroActivity
 import com.fiap.matheusfusco.matheusfusco.base.BaseView
 import com.fiap.matheusfusco.matheusfusco.base.BottomNavigationActivity
+import com.fiap.matheusfusco.matheusfusco.webservice.Constants
 import com.fiap.matheusfusco.matheusfusco.webservice.user.UserResponse
+import com.iamhabib.easy_preference.EasyPreference
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlin.properties.Delegates
@@ -25,6 +27,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun onLoginSuccess(userResponse: UserResponse) {
+        EasyPreference.with(this)
+                .addBoolean(Constants.LOGGED, true)
+                .save()
         startActivity(Intent(this, BottomNavigationActivity::class.java))
     }
 

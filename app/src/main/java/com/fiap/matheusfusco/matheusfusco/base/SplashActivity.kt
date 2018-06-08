@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import com.fiap.matheusfusco.matheusfusco.R
 import com.fiap.matheusfusco.matheusfusco.auth.login.LoginActivity
+import com.iamhabib.easy_preference.EasyPreference
+import android.R.attr.defaultValue
+import com.fiap.matheusfusco.matheusfusco.webservice.Constants
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -15,7 +19,15 @@ class SplashActivity : AppCompatActivity() {
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            val intent = Intent(applicationContext, LoginActivity::class.java)
+            val logged = EasyPreference.with(this)
+                    .getBoolean(Constants.LOGGED,  false)
+            var intent: Intent
+            intent = if (logged){
+                Intent(applicationContext, BottomNavigationActivity::class.java)
+            } else {
+                Intent(applicationContext, LoginActivity::class.java)
+            }
+
             startActivity(intent)
             finish()
         }
@@ -24,6 +36,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        EasyPreference.with(this)
 
         //Initialize the Handler
         mDelayHandler = Handler()
