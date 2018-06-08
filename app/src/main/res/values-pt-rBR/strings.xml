@@ -64,4 +64,6 @@
     <string name="positive_btn">Sim</string>
     <string name="negative_btn">Não</string>
     <string name="current_location">Localização atual</string>
+    <string name="error_to_login">Erro ao fazer login</string>
+    <string name="webeer_lets_drink">WeBeer\n Vamos beber?</string>
 </resources>

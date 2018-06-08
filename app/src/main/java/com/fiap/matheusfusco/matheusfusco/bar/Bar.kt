@@ -9,9 +9,9 @@ import android.os.Parcelable
 data class Bar(@PrimaryKey(autoGenerate = true)
                val id: Long?,
                val nome: String,
-               val notaAmbiente: Double,
-               val notaAtendimento: Double,
-               val notaRecomendacao: Double,
+               val notaAmbiente: Int,
+               val notaAtendimento: Int,
+               val notaRecomendacao: Int,
                val temCervejaArtesanal: Boolean,
                val temMusicaAoVivo: Boolean,
                val cep: String,
@@ -21,9 +21,9 @@ data class Bar(@PrimaryKey(autoGenerate = true)
     constructor(parcel: Parcel) : this(
             parcel.readLong(),
             parcel.readString(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readDouble(),
+            parcel.readInt(),
+            parcel.readInt(),
+            parcel.readInt(),
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
             parcel.readString(),
@@ -33,9 +33,9 @@ data class Bar(@PrimaryKey(autoGenerate = true)
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         id?.let { parcel.writeLong(it) }
         parcel.writeString(nome)
-        parcel.writeDouble(notaAmbiente)
-        parcel.writeDouble(notaAtendimento)
-        parcel.writeDouble(notaRecomendacao)
+        parcel.writeInt(notaAmbiente)
+        parcel.writeInt(notaAtendimento)
+        parcel.writeInt(notaRecomendacao)
         parcel.writeByte(if (temCervejaArtesanal) 1 else 0)
         parcel.writeByte(if (temMusicaAoVivo) 1 else 0)
         parcel.writeString(cep)

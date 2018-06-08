@@ -69,7 +69,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mGoogleMap = googleMap;
 
         if (mGoogleMap != null) {
-            mGoogleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).title(R.string.current_location.toString()))
+            mGoogleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).title(resources.getString(R.string.current_location)))
         }
 
     }
@@ -119,7 +119,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         //Toast.makeText(this,msg, Toast.LENGTH_LONG).show()
         val location = LatLng(location.latitude, location.longitude)
         mGoogleMap!!.clear()
-        mGoogleMap!!.addMarker(MarkerOptions().position(location).title(R.string.current_location.toString()))
+        mGoogleMap!!.addMarker(MarkerOptions().position(location).title(resources.getString(R.string.current_location)))
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
     }
 

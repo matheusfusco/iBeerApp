@@ -27,15 +27,15 @@ class LoginInteractorImpl : BaseInteractorImpl(), LoginInteractor {
                 }
 
                 if (response.code() == ServerStatusEnum.STATUS_FORBIDDEN.code || response.code() == ServerStatusEnum.STATUS_NOT_FOUND.code) {
-                    listener.onLoginError(R.string.not_found_error.toString())
+                    listener.onLoginError(context.resources.getString(R.string.not_found_error))
                 }
 
                 if (response.code() == ServerStatusEnum.STATUS_UNAUTHORIZED.code) {
-                    listener.onLoginError(R.string.not_authorized_error.toString())
+                    listener.onLoginError(context.resources.getString(R.string.not_authorized_error))
                     return
                 }
 
-                listener.onLoginError(R.string.unknown_error.toString())
+                listener.onLoginError(context.resources.getString(R.string.unknown_error))
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {

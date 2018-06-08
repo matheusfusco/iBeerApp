@@ -17,11 +17,11 @@ import kotlin.properties.Delegates
 
 class LoginActivity : AppCompatActivity(), LoginView {
     override fun invalidPass() {
-        etPassword.setError("Digite uma senha válida por favor", null)
+        etPassword.setError(resources.getString(R.string.input_valid_password), null)
     }
 
     override fun invalidForm() {
-        etEmail.setError("Digite um email válido por favor", null)
+        etEmail.setError(resources.getString(R.string.input_valid_email), null)
     }
 
     override fun onLoginSuccess(userResponse: UserResponse) {
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun onLoginError(errorMessage: String?) {
-        Toast.makeText(this, "Erro ao fazer login", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, resources.getString(R.string.error_to_login), Toast.LENGTH_LONG).show()
     }
 
     override fun showProgress(type: BaseView.ProgressType) {
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         btLogin.setOnClickListener {
             if (etEmail.text.toString().isEmpty() || etPassword.text.toString().isEmpty()) {
-                Toast.makeText(this, R.string.fill_all_fields_error.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resources.getString(R.string.fill_all_fields_error), Toast.LENGTH_LONG).show()
             }
             else {
                 mPresenter.login(etEmail.text.toString(), etPassword.text.toString())
@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     fun onLoadingStart() {
         onLoadingFinish()
         progressDialog = ProgressDialog(this@LoginActivity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
-        progressDialog!!.setMessage(R.string.loading_msg.toString())
+        progressDialog!!.setMessage(resources.getString(R.string.loading_msg))
         progressDialog!!.setCancelable(false)
 
         try {

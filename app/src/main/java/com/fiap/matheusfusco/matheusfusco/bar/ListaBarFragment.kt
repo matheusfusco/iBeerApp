@@ -58,21 +58,21 @@ class ListaBarFragment : Fragment() {
                 },
                 {
                     //                    Toast.makeText(activity, "Compartilhando ${it.nome}", Toast.LENGTH_SHORT).show()
-                    val shareBody = R.string.this_is_best_bar.toString() + " ${it.nome}"
+                    val shareBody = resources.getString(R.string.this_is_best_bar) + " ${it.nome}"
                     val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, R.string.this_is_show_bar.toString())
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, resources.getString(R.string.this_is_show_bar))
                     sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
-                    startActivity(Intent.createChooser(sharingIntent, R.string.share_with.toString()))
+                    startActivity(Intent.createChooser(sharingIntent, resources.getString(R.string.share_with)))
                 },
                 {
                     val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",it.telefone, null))
                     startActivity(intent)
                 },
                 {
-                    AlertDialog.Builder(this.context!!).setMessage(R.string.want_to_delete.toString()).setPositiveButton(R.string.positive_btn.toString()) { _, _ ->
+                    AlertDialog.Builder(this.context!!).setMessage(resources.getString(R.string.want_to_delete)).setPositiveButton(resources.getString(R.string.positive_btn)) { _, _ ->
                         barDao.delete(it)
-                    }.setNegativeButton(R.string.negative_btn.toString(), null).show()
+                    }.setNegativeButton(resources.getString(R.string.negative_btn), null).show()
                 }
         )
 

@@ -12,27 +12,27 @@ import kotlin.properties.Delegates
 
 class CadastroActivity : AppCompatActivity(), CadastroView {
     override fun invalidPass() {
-        et_password.setError(R.string.input_valid_password.toString(), null)
+        et_password.setError(resources.getString(R.string.input_valid_password), null)
     }
 
     override fun invalidConfirmPass() {
     }
 
     override fun invalidEmail() {
-        et_email.setError(R.string.input_valid_email.toString(), null)
+        et_email.setError(resources.getString(R.string.input_valid_email), null)
     }
 
     override fun invalidName() {
-        et_name.setError(R.string.input_valid_name.toString(), null)
+        et_name.setError(resources.getString(R.string.input_valid_name), null)
     }
 
     override fun onRegisterSuccess() {
-        Toast.makeText(this, R.string.register_success_msg.toString(), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, resources.getString(R.string.register_success_msg), Toast.LENGTH_LONG).show()
         finish()
     }
 
     override fun onRegisterError(errorMessage: String?) {
-        Toast.makeText(this, R.string.register_error.toString(), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, resources.getString(R.string.register_error), Toast.LENGTH_LONG).show()
     }
 
     override fun showProgress(type: BaseView.ProgressType) {
@@ -69,7 +69,7 @@ class CadastroActivity : AppCompatActivity(), CadastroView {
     fun onLoadingStart() {
         onLoadingFinish()
         progressDialog = ProgressDialog(this@CadastroActivity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
-        progressDialog!!.setMessage(R.string.loading_msg.toString())
+        progressDialog!!.setMessage(resources.getString(R.string.loading_msg))
         progressDialog!!.setCancelable(false)
 
         try {

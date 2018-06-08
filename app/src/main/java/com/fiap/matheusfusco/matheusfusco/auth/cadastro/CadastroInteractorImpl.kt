@@ -28,15 +28,15 @@ class CadastroInteractorImpl : BaseInteractorImpl(), CadastroInteractor {
                 }
 
                 if (response.code() == ServerStatusEnum.STATUS_FORBIDDEN.code || response.code() == ServerStatusEnum.STATUS_NOT_FOUND.code) {
-                    listener.onRegisterError(R.string.not_found_error.toString())
+                    listener.onRegisterError(context.resources.getString(R.string.not_found_error))
                 }
 
                 if (response.code() == ServerStatusEnum.STATUS_UNAUTHORIZED.code) {
-                    listener.onRegisterError(R.string.not_authorized_error.toString())
+                    listener.onRegisterError(context.resources.getString(R.string.not_authorized_error))
                     return
                 }
 
-                listener.onRegisterError(R.string.unknown_error.toString())
+                listener.onRegisterError(context.resources.getString(R.string.unknown_error))
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {

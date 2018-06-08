@@ -50,7 +50,7 @@ class ListaBarAdapter(private val context: Context,
 
             title.text = bar.nome
             descr.text = bar.comentario
-            val result = "%.2f".format( (bar.notaAmbiente + bar.notaAtendimento + bar.notaRecomendacao)/3)
+            val result = "%d".format( (bar.notaAmbiente + bar.notaAtendimento + bar.notaRecomendacao)/3)
             grade.text = result
 
             if (bar.temMusicaAoVivo) {

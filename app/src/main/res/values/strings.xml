@@ -136,4 +136,6 @@
     <string name="positive_btn">Yes</string>
     <string name="negative_btn">No</string>
     <string name="current_location">Current location</string>
+    <string name="error_to_login">Error to login</string>
+    <string name="webeer_lets_drink">WeBeer\n Let\'s Drink?</string>
 </resources>

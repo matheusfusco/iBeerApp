@@ -18,9 +18,6 @@ class DetalheBarActivity : AppCompatActivity() {
     private var barSelecionado: Bar? = null
 
     private lateinit var barDao: BarDao
-    private var notaAmbiente: Int = 0
-    private var notaAtendimento: Int = 0
-    private var notaRecomendacao: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,56 +43,12 @@ class DetalheBarActivity : AppCompatActivity() {
             sb_bar_attendance_grade.progress = it.notaAtendimento.toInt()
             sb_bar_ambient_grade.progress = it.notaAmbiente.toInt()
         }
-
-
-
-        sb_bar_ambient_grade.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                notaAmbiente = i
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-            }
-        })
-
-        sb_bar_attendance_grade.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                notaAtendimento = i
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-            }
-        })
-
-        sb_bar_recommendation_grade.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                notaRecomendacao = i
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-            }
-        })
     }
 
     private fun configureSaveButton() {
         bt_save_button.setOnClickListener {
             if (et_bar_name.text.toString().isEmpty() || et_bar_cep.text.toString().isEmpty() || et_bar_phone.text.toString().isEmpty()) {
-                Toast.makeText(this, R.string.fill_all_fields_error.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resources.getString(R.string.fill_all_fields_error), Toast.LENGTH_LONG).show()
             }
             else {
                 if (barSelecionado == null) {
@@ -119,10 +72,9 @@ class DetalheBarActivity : AppCompatActivity() {
     private fun create(): Bar {
         var id: Long? = barSelecionado?.id
         val name = et_bar_name.text.toString()
-        val description = et_bar_general_comments.text.toString()
-        val ntAmbiente = notaAmbiente.toDouble()
-        val ntAtendimento = notaAtendimento.toDouble()
-        val ntRecomendacao = notaRecomendacao.toDouble()
+        val ntAmbiente = sb_bar_ambient_grade.progress
+        val ntAtendimento = sb_bar_attendance_grade.progress
+        val ntRecomendacao = sb_bar_recommendation_grade.progress
         val temCerveja = cb_bar_has_artesanal_beer.isChecked
         val temMusica = cb_bar_has_live_band.isChecked
         val cep = et_bar_cep.text.toString()
