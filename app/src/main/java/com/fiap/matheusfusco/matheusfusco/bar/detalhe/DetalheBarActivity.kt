@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import android.widget.Toast
 import com.fiap.matheusfusco.matheusfusco.R
 import com.fiap.matheusfusco.matheusfusco.bar.BarDao
 import com.fiap.matheusfusco.matheusfusco.bar.BarDatabase
@@ -93,14 +94,19 @@ class DetalheBarActivity : AppCompatActivity() {
 
     private fun configureSaveButton() {
         bt_save_button.setOnClickListener {
-            if (barSelecionado == null) {
-                saveBar()
-                finish()
+            if (et_bar_name.text.toString().isEmpty() || et_bar_cep.text.toString().isEmpty() || et_bar_phone.text.toString().isEmpty()) {
+                Toast.makeText(this, R.string.fill_all_fields_error.toString(), Toast.LENGTH_LONG).show()
             }
             else {
-                val createdBar: Bar = create()
-                barDao.update(createdBar)
-                finish()
+                if (barSelecionado == null) {
+                    saveBar()
+                    finish()
+                }
+                else {
+                    val createdBar: Bar = create()
+                    barDao.update(createdBar)
+                    finish()
+                }
             }
         }
     }

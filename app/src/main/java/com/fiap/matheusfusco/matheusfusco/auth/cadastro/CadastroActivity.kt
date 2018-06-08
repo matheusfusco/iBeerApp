@@ -1,56 +1,88 @@
 package com.fiap.matheusfusco.matheusfusco.auth.cadastro
 
-import android.arch.persistence.room.Room
-import android.support.v7.app.AppCompatActivity
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.fiap.matheusfusco.matheusfusco.R
-import com.fiap.matheusfusco.matheusfusco.auth.User
-import com.fiap.matheusfusco.matheusfusco.auth.UserDao
-import com.fiap.matheusfusco.matheusfusco.auth.UserDatabase
+import com.fiap.matheusfusco.matheusfusco.base.BaseView
 import kotlinx.android.synthetic.main.activity_cadastro.*
+import kotlin.properties.Delegates
 
-class CadastroActivity : AppCompatActivity() {
+class CadastroActivity : AppCompatActivity(), CadastroView {
+    override fun invalidPass() {
+        et_password.setError(R.string.input_valid_password.toString(), null)
+    }
 
-    private lateinit var userDao: UserDao
+    override fun invalidConfirmPass() {
+    }
+
+    override fun invalidEmail() {
+        et_email.setError(R.string.input_valid_email.toString(), null)
+    }
+
+    override fun invalidName() {
+        et_name.setError(R.string.input_valid_name.toString(), null)
+    }
+
+    override fun onRegisterSuccess() {
+        Toast.makeText(this, R.string.register_success_msg.toString(), Toast.LENGTH_LONG).show()
+        finish()
+    }
+
+    override fun onRegisterError(errorMessage: String?) {
+        Toast.makeText(this, R.string.register_error.toString(), Toast.LENGTH_LONG).show()
+    }
+
+    override fun showProgress(type: BaseView.ProgressType) {
+        onLoadingStart()
+    }
+
+    override fun hideProgress() {
+        onLoadingFinish()
+    }
+
+    override fun onConnectionFailed() {
+    }
+
+    override fun onAuthError() {
+    }
+
+    var mPresenter: CadastroPresenterImpl by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
-        val database = Room.databaseBuilder(
-                this,
-                UserDatabase::class.java,
-                "techstore-database")
-                .allowMainThreadQueries()
-                .build()
-        userDao = database.userDao()
-
+        mPresenter = CadastroPresenterImpl(this, this)
 
         bt_register.setOnClickListener {
-            saveUser()
-            finish()
+            mPresenter.register(et_email.text.toString(), et_password.text.toString(), et_password.text.toString(), et_name.text.toString())
         }
     }
 
-    private fun saveUser() {
-        val createdUser = create()
-        if (createdUser != null) {
-            userDao.add(createdUser)
-        }
+    private var progressDialog: ProgressDialog? = null
 
+    protected var alert: AlertDialog? = null
+
+    fun onLoadingStart() {
+        onLoadingFinish()
+        progressDialog = ProgressDialog(this@CadastroActivity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+        progressDialog!!.setMessage(R.string.loading_msg.toString())
+        progressDialog!!.setCancelable(false)
+
+        try {
+            progressDialog!!.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
-    private fun create(): User? {
-        var user = userDao.verifyIfUserExists(et_email.text.toString())
-        if (user == null) {
-            val name = et_email.text.toString()
-            val senha = et_password.text.toString()
-            return User(null, name, senha)
-        }
-        else {
-            Toast.makeText(this, "Esse e-mail já foi utilizado!", Toast.LENGTH_LONG).show()
-            return null
+    fun onLoadingFinish() {
+
+        if (progressDialog != null) {
+            progressDialog!!.dismiss()
         }
     }
 }

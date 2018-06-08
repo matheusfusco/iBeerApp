@@ -46,9 +46,12 @@ class ListaBarAdapter(private val context: Context,
             val descr = itemView.tvBarDescription
             val btShare = itemView.btCompartilhar
             val btCall = itemView.btLigar
+            val grade = itemView.tv_bar_grade
 
             title.text = bar.nome
             descr.text = bar.comentario
+            val result = "%.2f".format( (bar.notaAmbiente + bar.notaAtendimento + bar.notaRecomendacao)/3)
+            grade.text = result
 
             if (bar.temMusicaAoVivo) {
                 itemView.imgMusica.setImageResource(R.drawable.ic_band_filled)

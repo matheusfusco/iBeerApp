@@ -98,9 +98,42 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="et_hint_name">Name</string>
     <string name="et_hint_email">E-mail</string>
     <string name="et_hint_password">Password</string>
     <string name="bt_login">Login</string>
     <string name="bt_register">You dont\'t have an account yet? <b>Click here</b></string>
     <string name="title_activity_test_maps">Map</string>
+    <string name="how_to_register_description">To register in WeBeer is very simple, enter your name, email, and choose a password to create your user.</string>
+    <string name="version_number">Version 1.0</string>
+    <string name="about_description">Who never forgot the name of a bar? Its location? Or even small details that make the difference when it comes to hanging out with friends? With WeBeer this is over! A simple way to register your favorite bars and not forget these important details!</string>
+    <string name="developed_by">Developed by Matheus Fusco</string>
+    <string name="all_rights_reserved">All rights reserved</string>
+    <string name="ambient_grade_descr">From 0 to 10, what is your grade to the local environment?</string>
+    <string name="attendance_grade_descr">From 0 to 10, what is your grade for attendance?</string>
+    <string name="recomendation_grade_descr">From 0 to 10, what would be the chance of you recommending this place to a friend?</string>
+    <string name="here_you_find">Here you will find:</string>
+    <string name="artesanal_beer">Artesanal Beer</string>
+    <string name="live_music">Live music</string>
+    <string name="bar_cep">CEP</string>
+    <string name="bar_phone">Telefone</string>
+    <string name="bar_comments_optional">(Optional) Leave your comments about the bar here...</string>
+    <string name="bt_save_bar">Save</string>
+    <string name="bt_register_new_user">Register</string>
+    <string name="et_bar_hint_name">Bar name</string>
+
+    <string name="input_valid_password">Please input a valid password</string>
+    <string name="input_valid_email">Please input a valid e-mail</string>
+    <string name="input_valid_name">Please input a valid name</string>
+    <string name="register_success_msg">Successfully performed registration!</string>
+    <string name="register_error">Error to register!</string>
+    <string name="loading_msg">Loading...</string>
+    <string name="fill_all_fields_error">Please fill all the fields</string>
+    <string name="this_is_best_bar">This is the best bar:</string>
+    <string name="this_is_show_bar">A very good bar!</string>
+    <string name="share_with">Share with: </string>
+    <string name="want_to_delete">Want to delete?</string>
+    <string name="positive_btn">Yes</string>
+    <string name="negative_btn">No</string>
+    <string name="current_location">Current location</string>
 </resources>

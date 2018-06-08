@@ -68,6 +68,24 @@
             app:srcCompat="@drawable/ic_band_black_white"
             android:background="@android:color/transparent" />
 
+        <ImageView
+            android:id="@+id/imgEstrela"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/imgMusica"
+            android:layout_below="@id/tvBarDescription"
+            android:src="@drawable/ic_star"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/tv_bar_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="0.0"
+            android:layout_toRightOf="@+id/imgEstrela"
+            android:layout_below="@+id/tvBarDescription"
+            android:gravity="center"/>
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -21,85 +21,47 @@
         "world, without breaking the rules of physics.\n"
         "The fundamentals of light, surface, and movement are key to conveying how objects move, "
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
+        "seams, divides space, and indicates moving parts.\n\n""
     </string>
-    <string name="et_hint_user">Usuário</string>
+    <string name="et_hint_name">Nome</string>
+    <string name="et_hint_email">E-mail</string>
     <string name="et_hint_password">Senha</string>
     <string name="bt_login">Entrar</string>
     <string name="bt_register">Não tem uma conta ainda? <b>Clique aqui</b></string>
+
+    <string name="unknown_error">Erro desconhecido.</string>
+    <string name="not_authorized_error">Não autorizado.</string>
+    <string name="not_found_error">Não encontrado.</string>
+    <string name="how_to_register_description">Para cadastrar no WeBeer é muito simples, digite seu nome, e-mail, e escolha uma senha para criar seu usuário.</string>
+    <string name="version_number">Versão 1.0</string>
+    <string name="about_description">Quem nunca esqueceu o nome de um bar? Sua localização? Ou até pequenos detalhes que fazem a diferença na hora de sair com os amigos? Com o WeBeer isso acabou! Um jeito simples de registrar seus bares favoritos e não esquecer desses detalhes tão importantes!</string>
+    <string name="developed_by">Desenvolvido por Matheus Fusco</string>
+    <string name="all_rights_reserved">Todos os direitos reservados</string>
+    <string name="ambient_grade_descr">De 0 a 10, qual a sua nota para o ambiente do local?</string>
+    <string name="attendance_grade_descr">De 0 a 10, qual a sua nota para o atendimento dos garçons?</string>
+    <string name="recomendation_grade_descr">De 0 a 10, qual seria a chance de você recomendar este local para um amigo?</string>
+    <string name="here_you_find">Aqui você encontra:</string>
+    <string name="artesanal_beer">Cerveja artesanal</string>
+    <string name="live_music">Música ao vivo</string>
+    <string name="bar_cep">CEP</string>
+    <string name="bar_phone">Telefone</string>
+    <string name="bar_comments_optional">(Opcional) Deixe seu comentário sobre o bar...</string>
+    <string name="bt_save_bar">Salvar</string>
+    <string name="bt_register_new_user">Cadastrar</string>
+    <string name="et_bar_hint_name">Nome do bar</string>
+
+    <string name="input_valid_password">Digite uma senha válida por favor</string>
+    <string name="input_valid_email">Digite um email válido por favor</string>
+    <string name="input_valid_name">Digite um nome válido por favor</string>
+    <string name="register_success_msg">Cadastro efetuado!</string>
+    <string name="register_error">Erro ao cadastrar!</string>
+    <string name="loading_msg">Carregando...</string>
+    <string name="fill_all_fields_error">Favor preencher todos os campos</string>
+    <string name="this_is_best_bar">Esse é o melhor bar:</string>
+    <string name="this_is_show_bar">Bar show de bola!</string>
+    <string name="share_with">Compartilhar com: </string>
+    <string name="want_to_delete">Deseja excluir?</string>
+    <string name="positive_btn">Sim</string>
+    <string name="negative_btn">Não</string>
+    <string name="current_location">Localização atual</string>
 </resources>
